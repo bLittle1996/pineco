@@ -7,3 +7,11 @@
   - Design product page
   - Design user profile/settings
   - Design checkout
+
+- Front-end coding
+  - for the landing page
+  - for the sign-up/log-in page
+  - for the catalog
+  - for the product pages
+  - for the user profile/settings
+  - for the checkout
