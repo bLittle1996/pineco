@@ -19,4 +19,12 @@ Route::group(['prefix' => '/'], function(){
     return view('landingpage');
   });//returns either landing page or redirects to catalog based on criteria TBD
 
+  Route::get('/login', function(){
+    return view('login');
+  });
+
+  Route::get('/register', function(){
+    return view('register');
+  });
+
 });//home group ends
