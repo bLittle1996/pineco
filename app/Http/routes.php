@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//home group, contains all the views the visitors can see
+Route::group(['prefix' => '/'], function(){
+
+  Route::get('/', function () {
+    return view('landingpage');
+  });//returns either landing page or redirects to catalog based on criteria TBD
+
+});//home group ends

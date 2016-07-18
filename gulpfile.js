@@ -12,5 +12,9 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass([//all the files in this array are what gets compiled, don't forget to update it!
+              'landingpage.scss'
+             ],
+              'public/css/app.css'//this is the file all the SCSS in the array above is compiled into.
+            );//just plop in the names of our CSS files here!
 });
