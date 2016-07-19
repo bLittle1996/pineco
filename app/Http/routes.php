@@ -13,18 +13,18 @@
 
 
 //home group, contains all the views the visitors can see
-Route::group(['prefix' => '/'], function(){
+Route::group(['prefix' => '/'], function() {
 
   Route::get('/', function () {
     return view('landingpage');
-  });//returns either landing page or redirects to catalog based on criteria TBD
+  })->name('home');//returns either landing page or redirects to catalog based on criteria TBD
 
-  Route::get('/login', function(){
+  Route::get('/login', function() {
     return view('login');
-  });
+  })->name('login');
 
-  Route::get('/register', function(){
+  Route::get('/register', function() {
     return view('register');
-  });
+  })->name('registration');
 
 });//home group ends

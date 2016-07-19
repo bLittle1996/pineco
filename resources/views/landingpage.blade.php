@@ -8,13 +8,13 @@
   <section class="banner">
     <div class="wrapper-wide">
       <header class="clearfix">
-        <a href="/" class="sitename">pine.co</a>
+        <a href="{{ route('home') }}" class="sitename">pine.co</a>
 
         <nav>
           <ul>
             <li><a href="#">browse</a></li>
-            <li><a href="#">login</a></li>
-            <li><a href="#" class="button-small secondary">register</a></li>
+            <li><a href="{{ route('login') }}">login</a></li>
+            <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>
           </ul>
         </nav>
       </header>

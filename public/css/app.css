@@ -1,8 +1,4 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
-body {
-  font-family: 'Noto Sans Japanese', sans-serif;
-  margin: 0; }
-
 .banner {
   background-image: url("images/bannerimage.jpg");
   background-repeat: no-repeat;
@@ -115,19 +111,84 @@ body {
       font-weight: 200;
       font-size: 18px; }
 
+.login-and-registration-form .wrapper-narrow {
+  max-width: 500px;
+  min-width: 200px; }
+
+.input-form {
+  margin: 50px auto;
+  max-width: 500px;
+  min-width: 200px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6); }
+  .input-form h1 {
+    font-size: 30px;
+    font-weight: 200;
+    color: #4b3d1a; }
+  .input-form input {
+    display: block;
+    padding: 15px 12px;
+    width: 60%;
+    min-width: 100px;
+    border-radius: 12px;
+    border: solid 1px rgba(61, 48, 25, 0.55);
+    box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55);
+    margin: 0 auto 30px auto;
+    outline: none;
+    color: #4b3d1a; }
+  .input-form .button {
+    margin-bottom: 20px;
+    font-family: 'Noto Sans Japanese';
+    font-weight: 500;
+    font-size: 15px;
+    padding-bottom: 8px; }
+
+.green-header {
+  padding: 30px 0;
+  background-color: #588957; }
+  .green-header .sitename {
+    font-weight: 200;
+    font-size: 28px; }
+  .green-header nav {
+    float: right; }
+    .green-header nav li {
+      display: inline;
+      padding-left: 15px;
+      list-style: none; }
+    .green-header nav a {
+      font-weight: 500;
+      font-size: 18px; }
+  .green-header a {
+    text-decoration: none;
+    color: white; }
+
+html {
+  height: 100%; }
+
+body {
+  font-family: 'Noto Sans Japanese', sans-serif;
+  margin: 0;
+  height: 100%;
+  background-color: #cdd5cb; }
+
 .button {
   padding: 7px 50px 12px 50px;
   border-radius: 30px;
   text-decoration: none;
   color: white;
-  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55); }
+  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55);
+  border: none; }
 
 .button-small {
   padding: 5px 15px 8px 15px;
   border-radius: 40px;
   text-decoration: none;
   color: white;
-  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55); }
+  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55);
+  border: none; }
 
 .button-large {
   padding: 12px 75px 17px 75px;
@@ -136,7 +197,8 @@ body {
   color: white;
   font-weight: 500;
   font-size: 22px;
-  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55); }
+  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55);
+  border: none; }
 
 .primary {
   background-color: #588957; }
@@ -164,5 +226,10 @@ body {
 
 .clearfix:after {
   clear: both; }
+
+.footer {
+  text-align: center;
+  font-size: 18px;
+  color: #629885; }
 
 /*# sourceMappingURL=app.css.map */
