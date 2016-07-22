@@ -21,6 +21,7 @@ Route::group(['prefix' => '/'], function() {
 
   Route::get('/login', [
     'uses' => 'UserController@getLoginPage',
+    'middleware' => 'guest',
     'as' => 'login'
   ]);
 
@@ -29,11 +30,9 @@ Route::group(['prefix' => '/'], function() {
     'as' => 'login'
   ]);
 
-
-
-
   Route::get('/register', [
     'uses' => 'UserController@getRegistrationPage',
+    'middleware' => 'guest',
     'as' => 'registration'
   ]);
 
