@@ -13,8 +13,12 @@
         <nav>
           <ul>
             <li><a href="#">browse</a></li>
-            <li><a href="{{ route('login') }}">login</a></li>
-            <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>
+            @if(!Auth::check())
+              <li><a href="{{ route('login') }}">login</a></li>
+              <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>
+            @else
+              <li><a href="{{ route('logout') }}" class="button-small secondary">logout</a></li>
+            @endif
           </ul>
         </nav>
       </header>

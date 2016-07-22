@@ -2,25 +2,10 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  use Authenticatable;//tells laravel "Hey, you can use me for authenticating things"
+  protected $table = 'users'; //this is the table in the database this class is linked to
 }
