@@ -55,6 +55,13 @@ body{
   }
 
 
+.panel{
+  background-color: white;
+  padding: 0 10px 30px 10px;
+  border-radius: 10px;
+  box-shadow: $panel-shadow;
+}
+
 
 .secondary{
   background-color: rgba(255, 255, 255, 0.25);
@@ -67,6 +74,12 @@ body{
 .wrapper-wide{
   max-width: 1536px;
   width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper{
+  max-width: 1056px;
+  width: 55%;
   margin: 0 auto;
 }
 

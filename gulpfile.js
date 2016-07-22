@@ -17,7 +17,8 @@ elixir(function(mix) {
               'loginandregistration.scss',
               'green-header.scss',
               'global_styles.scss',
-              'footer.scss'
+              'footer.scss',
+              'profile.scss'
              ],
               'public/css/app.css'//this is the file all the SCSS in the array above is compiled into.
             );//just plop in the names of our CSS files here!
