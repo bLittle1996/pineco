@@ -15,18 +15,7 @@ class UserController extends Controller {
   public function getProfile() {
     return view('profile');
   }
-  public function getVerify() {
-    return view('verification/verify')->with(['username' => null, 'email' => null]);
-  }
-  public function getVerificationReminder() {
-    return view('verification/verificationRequired');
-  }
-  public function getVerificationSuccess() {
-    return view('verification/confirmedVerification');
-  }
-  public function getVerificationFailed() {
-    return view('verification/failedVerification');
-  }
+
   public function loginUser(Request $request) {
     //let's validate the request, is there a password? a username? are these things even in the db?
     $this->validate($request, [
@@ -66,17 +55,7 @@ class UserController extends Controller {
     //after we register the use in the DB, redirect them to the landing page for now. In the future put them at the catalog or to some verify email screen
     return redirect()->route('verify')->with(['username' => $request['username'], 'email' => $request['email']]);
   }
-  public function verifyAccount($confirmation_token) {
-    try {
-      $user = User::where('confirmation_token', '=', $confirmation_token)->first();
-      $user->confirmed = true;
-      $user->save();
-    }
-    catch(Exception $ex) {
-        return redirect()->route('failedVerification')->with(['success' => 'failed']);
-    }
-    return redirect()->route('confirmedVerification')->with(['success' => 'success']);
-  }
+
   public function logoutUser() {
     Auth::logout();
     return redirect()->back();

@@ -34,27 +34,29 @@ Route::group(['prefix' => '/'], function() {
     'middleware' => 'guest',
     'as' => 'register'
   ]);
-  //this route has to go first, or it's gonna think that verify/failed||success are the confirmation_token
-  Route::get('register/verify/{confirmation_token}', [
-    'uses' => "UserController@verifyAccount",
-    'as' => 'verifyAccount'
-  ]);
-  Route::get('/verify', [
-    'uses' => 'UserController@getVerify',
-    'as' => 'verify'
-  ]);
-  Route::get('/verify/required', [
-    'uses' => "UserController@getVerificationReminder",
-    'as' => 'verificationRequired'
-  ]);
-  Route::get('/verify/failed', [
-    'uses' => "UserController@getVerificationFailed",
-    'as' => 'failedVerification'
-  ]);
-  Route::get('/verify/confirmed', [
-    'uses' => "UserController@getVerificationSuccess",
-    'as' => 'confirmedVerification'
-  ]);
+
+  Route::group(['prefix' => 'verify'], function() {
+    Route::get('/', [
+      'uses' => 'VerifyController@getVerify',
+      'as' => 'verify'
+    ]);
+    Route::get('/activate/{confirmation_token}', [
+      'uses' => "VerifyController@verifyAccount",
+      'as' => 'verifyAccount'
+    ]);
+    Route::get('/required', [
+      'uses' => "VerifyController@getVerificationReminder",
+      'as' => 'verificationRequired'
+    ]);
+    Route::get('/failed', [
+      'uses' => "VerifyController@getVerificationFailed",
+      'as' => 'failedVerification'
+    ]);
+    Route::get('/confirmed', [
+      'uses' => "VerifyController@getVerificationSuccess",
+      'as' => 'confirmedVerification'
+    ]);
+  });
   //the auth middleware we see here, basically means that a user has to be logged in and authenticated in order to access it
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('/', [
