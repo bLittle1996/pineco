@@ -28,7 +28,7 @@
         <h3>become a part of the greatest thing since greatness and start <em>pining</em> over our quality pinecones and pinecone accessories</h3>
         <div class="button-container">
           <a class="button secondary" href="#"> browse </a>
-          <a class="button primary" href="#">register</a>
+          <a class="button primary" href="{{ route('registration') }}">register</a>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <section class="call-to-action">
           <div class="wrapper-narrow">
             <h1>start earning exclusive rewards<br><em>today</em></h1>
-            <a href="" class="button-large primary">register</a>
+            <a href="{{ route('registration') }}" class="button-large primary">register</a>
             <p>Ben Littleton &copy; {{ getdate()['year'] }}
           </div>
         </section>

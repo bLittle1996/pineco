@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
         $table->string('username')->unique();
         $table->string('email')->unique();
         $table->string('password');//the users actual password
+        $table->string('confirmation_token')->nullable();
+        $table->boolean('confirmed')->default(false);
         $table->rememberToken();//used for remember me functionality, which I probably will forget to do!
         $table->timestamps();//created at, updated at
 
