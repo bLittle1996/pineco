@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,38 +9,30 @@ class UserController extends Controller {
   public function getLoginPage() {
     return view('login');
   }
-
   public function getRegistrationPage() {
     return view('register');
   }
-
   public function getProfile() {
     return view('profile');
   }
-
   public function getVerify() {
     return view('verification/verify')->with(['username' => null, 'email' => null]);
   }
-
   public function getVerificationReminder() {
     return view('verification/verificationRequired');
   }
-
   public function getVerificationSuccess() {
     return view('verification/confirmedVerification');
   }
-
   public function getVerificationFailed() {
     return view('verification/failedVerification');
   }
-
   public function loginUser(Request $request) {
     //let's validate the request, is there a password? a username? are these things even in the db?
     $this->validate($request, [
       'username' => 'required',
       'password' => 'required'
     ]);
-
     if( !Auth::attempt(['username' => strtolower($request['username']), 'password' => $request['password']]) ) {
       return redirect()->back()->with(['fail' => 'unable to login, invalid username or password']);
     }
@@ -53,9 +44,7 @@ class UserController extends Controller {
     //otherwise we just login and have a gander
     return redirect()->route('profile');
   }
-
   public function registerUser(Request $request) {
-
     $this->validate($request, [
       'username' => 'required|unique:users',
       'email' => 'required|unique:users|email',
@@ -74,11 +63,9 @@ class UserController extends Controller {
         $message->from('noreply@pine.co', 'Pine.co Team');
       });
     });
-
     //after we register the use in the DB, redirect them to the landing page for now. In the future put them at the catalog or to some verify email screen
     return redirect()->route('verify')->with(['username' => $request['username'], 'email' => $request['email']]);
   }
-
   public function verifyAccount($confirmation_token) {
     try {
       $user = User::where('confirmation_token', '=', $confirmation_token)->first();
@@ -90,7 +77,6 @@ class UserController extends Controller {
     }
     return redirect()->route('confirmedVerification')->with(['success' => 'success']);
   }
-
   public function logoutUser() {
     Auth::logout();
     return redirect()->back();
