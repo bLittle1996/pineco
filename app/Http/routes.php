@@ -30,11 +30,45 @@ Route::group(['prefix' => '/'], function() {
     'as' => 'login'
   ]);
 
+  /* The register routes can have the guest middleware, this means that you can only access these if you aren't authenticated(logged in) */
   Route::get('/register', [
     'uses' => 'UserController@getRegistrationPage',
     'middleware' => 'guest',
     'as' => 'registration'
   ]);
+
+  Route::post('/register', [
+    'uses' => "UserController@registerUser",
+    'middleware' => 'guest',
+    'as' => 'register'
+  ]);
+
+  //this route has to go first, or it's gonna think that verify/failed||success are the confirmation_token
+  Route::get('register/verify/{confirmation_token}', [
+    'uses' => "UserController@verifyAccount",
+    'as' => 'verifyAccount'
+  ]);
+
+  Route::get('/verify', [
+    'uses' => 'UserController@getVerify',
+    'as' => 'verify'
+  ]);
+
+  Route::get('/verify/required', [
+    'uses' => "UserController@getVerificationReminder",
+    'as' => 'verificationRequired'
+  ]);
+
+  Route::get('/verify/failed', [
+    'uses' => "UserController@getVerificationFailed",
+    'as' => 'failedVerification'
+  ]);
+
+  Route::get('/verify/confirmed', [
+    'uses' => "UserController@getVerificationSuccess",
+    'as' => 'confirmedVerification'
+  ]);
+
 
   //the auth middleware we see here, basically means that a user has to be logged in and authenticated in order to access it
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {

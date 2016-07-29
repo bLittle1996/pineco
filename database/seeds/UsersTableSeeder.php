@@ -15,11 +15,13 @@ class UsersTableSeeder extends Seeder
         $user->username = 'lexington';
         $user->email = 'lexington@test.com';
         $user->password = bcrypt("notsecure");
+        $user->confirmed = true;
         $user->save();
 
         $user = new User();
         $user->username = "enterprise";
         $user->email = "enterprise@starfleet.ca";
+        $user->confirmed = true;
         $user->password = bcrypt("yoshi");
         $user->save();
     }
