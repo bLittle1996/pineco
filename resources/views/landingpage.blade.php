@@ -12,7 +12,7 @@
 
         <nav>
           <ul>
-            <li><a href="#">browse</a></li>
+            <li><a href="{{ route('catalog') }}">browse</a></li>
             @if(!Auth::check())
               <li><a href="{{ route('login') }}">login</a></li>
               <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>
@@ -27,7 +27,7 @@
         <h1>the world's leading supplier of <span class="enhance-weight">pinecones</span></h1>
         <h3>become a part of the greatest thing since greatness and start <em>pining</em> over our quality pinecones and pinecone accessories</h3>
         <div class="button-container">
-          <a class="button secondary" href="#"> browse </a>
+          <a class="button secondary" href="{{ route('catalog') }}"> browse </a>
           <a class="button primary" href="{{ route('registration') }}">register</a>
         </div>
       </div>

@@ -18,7 +18,8 @@ elixir(function(mix) {
               'green-header.scss',
               'global_styles.scss',
               'footer.scss',
-              'profile.scss'
+              'profile.scss',
+              'catalog.scss'
              ],
               'public/css/app.css'//this is the file all the SCSS in the array above is compiled into.
             );//just plop in the names of our CSS files here!

@@ -57,7 +57,7 @@ Route::group(['prefix' => '/'], function() {
       'as' => 'confirmedVerification'
     ]);
   });
-  //the auth middleware we see here, basically means that a user has to be logged in and authenticated in order to access it
+  //the auth middleware we see here basically means that a user has to be logged in and authenticated in order to access it
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('/', [
       'uses' => 'UserController@getProfile',
@@ -68,4 +68,12 @@ Route::group(['prefix' => '/'], function() {
       'as' => 'logout'
     ]);
   });
+
+  Route::group(['prefix' => 'catalog'], function() {
+    Route::get('/', [
+      'uses' => 'CatalogController@getCatalog',
+      'as' => 'catalog'
+    ]);
+  });
+
 });//home group ends
