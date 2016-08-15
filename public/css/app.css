@@ -247,6 +247,7 @@ body {
   clear: both; }
 
 .footer {
+  margin: 20px 0 20px 0;
   text-align: center;
   font-size: 18px;
   color: #629885; }

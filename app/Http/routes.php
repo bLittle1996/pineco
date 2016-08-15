@@ -41,19 +41,19 @@ Route::group(['prefix' => '/'], function() {
       'as' => 'verify'
     ]);
     Route::get('/activate/{confirmation_token}', [
-      'uses' => "VerifyController@verifyAccount",
+      'uses' => 'VerifyController@verifyAccount',
       'as' => 'verifyAccount'
     ]);
     Route::get('/required', [
-      'uses' => "VerifyController@getVerificationReminder",
+      'uses' => 'VerifyController@getVerificationReminder',
       'as' => 'verificationRequired'
     ]);
     Route::get('/failed', [
-      'uses' => "VerifyController@getVerificationFailed",
+      'uses' => 'VerifyController@getVerificationFailed',
       'as' => 'failedVerification'
     ]);
     Route::get('/confirmed', [
-      'uses' => "VerifyController@getVerificationSuccess",
+      'uses' => 'VerifyController@getVerificationSuccess',
       'as' => 'confirmedVerification'
     ]);
   });
@@ -74,6 +74,9 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'CatalogController@getCatalog',
       'as' => 'catalog'
     ]);
+    Route::get('/{productInfo}', [
+      'uses' => 'CatalogController@getProduct',
+      'as' => 'product'
+    ]);
   });
-
 });//home group ends

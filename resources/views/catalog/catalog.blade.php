@@ -14,9 +14,9 @@
           <div class="clearfix">
             <div class="arrows-left">
               @if($products->currentPage() != 1)
-                <a href="{{ $products->appends($appends)->fragment(str_replace(' ', '_', $category))->previousPageUrl() }}"><img src="images/icons/arrows-left.png" alt="a pair of gorgeous arrows point to the left" /></a>
+                <a href="{{ $products->appends($appends)->fragment(str_replace(' ', '_', $category))->previousPageUrl() }}"><img src="{{ URL::to('images/icons/arrows-left.png') }}" alt="a pair of gorgeous arrows point to the left" /></a>
               @else
-                <img src="images/icons/arrows-left-disabled.png" alt="a pair of gorgeous arrows point to the left" />
+                <img src="{{ URL::to('images/icons/arrows-left-disabled.png') }}" alt="a pair of gorgeous arrows point to the left" />
               @endif
             </div>
             <div class="products">
@@ -35,9 +35,9 @@
 
             <div class="arrows-right">
               @if($products->hasMorePages())
-                <a href="{{ $products->appends($appends)->fragment(str_replace(' ', '_', $category))->nextPageUrl() }}"><img src="images/icons/arrows-right.png" alt="a pair of gorgeous arrows point to the right" /></a>
+                <a href="{{ $products->appends($appends)->fragment(str_replace(' ', '_', $category))->nextPageUrl() }}"><img src="{{ URL::to('images/icons/arrows-right.png') }}" alt="a pair of gorgeous arrows point to the right" /></a>
               @else
-                <img src="images/icons/arrows-right-disabled.png" alt="a less gorgeous pair of arrows pointing right" />
+                <img src="{{ URL::to('images/icons/arrows-right-disabled.png') }}" alt="a less gorgeous pair of arrows pointing right" />
               @endif
             </div>
           </div>
