@@ -11,4 +11,12 @@ class Product extends Model
     function category(){
       return $this->belongsTo('App\Category');
     }
+
+    function reviews() {
+      return $this->hasMany('App\ProductReview');
+    }
+
+    function carts() {
+      return $this->belongsToMany('App\Cart')->withPivot('quantity')->withTimestamps();
+    }
 }

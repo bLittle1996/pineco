@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Mail;
 use App\User;
+use App\Cart;
 class UserController extends Controller {
   public function getLoginPage() {
     return view('login');
@@ -13,7 +14,7 @@ class UserController extends Controller {
     return view('register');
   }
   public function getProfile() {
-    return view('profile');
+    return view('user/profile');
   }
 
   public function loginUser(Request $request) {
@@ -47,6 +48,8 @@ class UserController extends Controller {
       $user->confirmation_token = str_random(64);
       $user->password = bcrypt($request['password']);
       $user->save();
+      $cart = new Cart();
+      $user->cart()->save($cart);
       Mail::send('emails/verify',  ['user' => $user], function($message) use ($user){
         $message->to($user['email'], $user['username'])->subject('verify your pine.co account');
         $message->from('noreply@pine.co', 'Pine.co Team');
@@ -60,4 +63,5 @@ class UserController extends Controller {
     Auth::logout();
     return redirect()->back();
   }
+
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Cart;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -16,13 +17,18 @@ class UsersTableSeeder extends Seeder
         $user->email = 'lexington@test.com';
         $user->password = bcrypt("notsecure");
         $user->confirmed = true;
+        $cart = new Cart();
         $user->save();
+        $user->cart()->save($cart);
 
         $user = new User();
         $user->username = "enterprise";
         $user->email = "enterprise@starfleet.ca";
         $user->confirmed = true;
         $user->password = bcrypt("yoshi");
+        $cart = new Cart();
         $user->save();
+        $user->cart()->save($cart);
+
     }
 }

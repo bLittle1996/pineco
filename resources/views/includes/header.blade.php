@@ -4,7 +4,7 @@
 
     <nav>
       <ul>
-        <li><a href="#">browse</a></li>
+        <li><a href="{{ route('catalog') }}">browse</a></li>
         @if(!Auth::check())
           <li><a href="{{ route('login') }}">login</a></li>
           <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>

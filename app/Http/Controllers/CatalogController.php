@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
 use App\Product;
+use App\ProductReview;
+use Auth;
+use DB;
 
 class CatalogController extends Controller
 {
@@ -27,6 +30,27 @@ class CatalogController extends Controller
   }
 
   public function getProduct($productInfo) {
-    return view('catalog/product', [ 'productInfo' => $productInfo ]);
+    $productName = str_replace('_', ' ', $productInfo);
+    $product = Product::where('name', $productName)->with('reviews.user')->first();
+    if($product == null) {
+      return redirect()->route('catalog');
+    }
+    return view('catalog/product', [ 'product' => $product ]);
+  }
+
+  public function addReview(Request $request) {
+    $this->validate($request, [
+      'rating' => 'required',
+      'message' => 'required'
+    ]);
+
+    $review = new ProductReview();
+    $review->rating = $request['rating'];
+    $review->message = $request['message'];
+    $review->product_id = $request['product_id'];
+    $review->user_id = Auth::user()->id;
+    $review->save();
+
+    return redirect()->back();
   }
 }

@@ -67,6 +67,14 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'UserController@logoutUser',
       'as' => 'logout'
     ]);
+    Route::get('/cart', [
+      'uses' => 'CartController@getCart',
+      'as' => 'cart'
+    ]);
+    Route::post('/cart', [
+      'uses' => 'CartController@addToCart',
+      'as' => 'addToCart'
+    ]);
   });
 
   Route::group(['prefix' => 'catalog'], function() {
@@ -75,8 +83,12 @@ Route::group(['prefix' => '/'], function() {
       'as' => 'catalog'
     ]);
     Route::get('/{productInfo}', [
-      'uses' => 'CatalogController@getProduct',
-      'as' => 'product'
+      'uses' => 'CatalogController@getProduct'
+    ]);
+    Route::post('/review', [
+      'uses' => 'CatalogController@addReview',
+      'as' => 'postReview'
     ]);
   });
+
 });//home group ends

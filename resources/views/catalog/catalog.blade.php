@@ -22,7 +22,7 @@
             <div class="products">
               @foreach($products as $product)
                 <div class="product">
-                  <a href="#">
+                  <a href="{{ URL::to('catalog/' . str_replace(' ', '_', $product->name)) }}">
                     <img src="{{ URL::to($product->thumbnail) }}" />
                     <div class="product-info">
                       <p class="product-name">{{ $product->name }}</p>

@@ -46,7 +46,10 @@ body{
   box-shadow: $button-shadow;
   border: none;
 }
-
+button.button, button.button-small, button.button-large {
+  outline: none;
+  font-family: "Noto Sans Japanese", sans-serif;
+}
 .primary{
   background-color: $primary-green;
     &:hover{
@@ -57,7 +60,7 @@ body{
 
 .panel{
   background-color: white;
-  padding: 0 10px 30px 10px;
+  padding: 30px 10px 30px 10px;
   border-radius: 10px;
   box-shadow: $panel-shadow;
 }
