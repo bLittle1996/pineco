@@ -12,13 +12,47 @@ use DB;
 
 class CartController extends Controller
 {
+
+  public function modifyQuantityInCart($product_id, $direction) {
+    DB::beginTransaction();
+    try {
+      $cart = Cart::where('user_id', Auth::user()->id)->firstOrFail();
+      $existingQuantity = DB::table('cart_product')->where('product_id', $product_id)->first()->quantity;
+      if($direction == '+') {
+        $cart->products()->updateExistingPivot($product_id, ['quantity' => $existingQuantity + 1]);
+      } else {
+        if($existingQuantity > 1) {
+          $cart->products()->updateExistingPivot($product_id, ['quantity' => $existingQuantity - 1]);
+        }
+      }
+      DB::commit();
+      return 'success';
+    } catch(\Exception $e) {
+      DB::rollback();
+      return 'fail';
+    }
+  }
+
+  public function deleteFromCart($product_id) {
+    DB::beginTransaction();
+    try {
+      $cart = Cart::where('user_id', Auth::user()->id)->firstOrFail();
+      $cart->products()->detach($product_id);
+      DB::commit();
+      return 'success';
+    } catch(\Exception $e) {
+      DB::rollback();
+      return 'fail';
+    }
+  }
+
   public function addToCart(Request $request) {
     if($request['quantity'] == '' || $request['quantity'] <= 0) {
       $request['quantity'] = 1;
     }
     DB::beginTransaction();
     try {
-      $cart = Cart::where('user_id', Auth::user()->id)->first();
+      $cart = Cart::where('user_id', Auth::user()->id)->firstOrFail();
       $found = false;//product exists in cart already?
       //check to see if the user already has the product in their cart, so that we can increment the quantity field of a single entry in the db instead of creating a new one
       foreach($cart->products as $product) {

@@ -8,12 +8,12 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
 
 #cart {
   margin-top: 2em;
+  h1{
+    margin: 0 0 1em 1em;
+    color: $primary-brown;
+    font-weight: 200;
+  }
   .panel {
-    h1{
-      margin: 0 0 0 1em;
-      color: $primary-brown;
-      font-weight: 200;
-    }
     .empty {
       width: 100%;
       text-align: center;
@@ -28,12 +28,18 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
           h2{
             margin: 0;
             font-weight: 200;
+            padding-bottom: 0.25em;
           }
         }
-
+        .name {
+          padding-left: 0.5em;
+        }
         .name, .quantity, .price, .total {
           color: $secondary-brown;
           font-weight: 200;
+          div {
+            display: inline;
+          }
         }
         .quantity, .price, .total {
           text-align: right;
@@ -42,9 +48,16 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
     }
 
     .cart-functions {
-      margin: 1em 2em 0 0;
+      margin: 2em 2em 0 0;
       text-align: right;
     }
 
   }/* panel ends */
+
+  .fa {
+    &:hover {
+      color: $primary-green;
+      cursor: pointer;
+    }
+  }
 }/* CART ends */

@@ -75,6 +75,14 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'CartController@addToCart',
       'as' => 'addToCart'
     ]);
+    Route::delete('/cart/delete/{product_id}', [
+      'uses' => 'CartController@deleteFromCart',
+      'as' => 'deleteFromCart'
+    ]);
+    Route::put('/cart/update/{product_id}/{direction}', [
+      'uses' => 'CartController@modifyQuantityInCart',
+      'as' => 'updateQuantityInCart'
+    ]);
   });
 
   Route::group(['prefix' => 'catalog'], function() {

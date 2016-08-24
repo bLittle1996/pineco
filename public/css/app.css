@@ -511,8 +511,8 @@ button.button, button.button-small, button.button-large {
 #cart {
   margin-top: 2em;
   /* panel ends */ }
-  #cart .panel h1 {
-    margin: 0 0 0 1em;
+  #cart h1 {
+    margin: 0 0 1em 1em;
     color: #4b3d1a;
     font-weight: 200; }
   #cart .panel .empty {
@@ -526,15 +526,23 @@ button.button, button.button-small, button.button-large {
         color: #4b3d1a; }
         #cart .panel .table-container table td h2 {
           margin: 0;
-          font-weight: 200; }
+          font-weight: 200;
+          padding-bottom: 0.25em; }
+      #cart .panel .table-container table .name {
+        padding-left: 0.5em; }
       #cart .panel .table-container table .name, #cart .panel .table-container table .quantity, #cart .panel .table-container table .price, #cart .panel .table-container table .total {
         color: #6b6149;
         font-weight: 200; }
+        #cart .panel .table-container table .name div, #cart .panel .table-container table .quantity div, #cart .panel .table-container table .price div, #cart .panel .table-container table .total div {
+          display: inline; }
       #cart .panel .table-container table .quantity, #cart .panel .table-container table .price, #cart .panel .table-container table .total {
         text-align: right; }
   #cart .panel .cart-functions {
-    margin: 1em 2em 0 0;
+    margin: 2em 2em 0 0;
     text-align: right; }
+  #cart .fa:hover {
+    color: #588957;
+    cursor: pointer; }
 
 /* CART ends */
 
