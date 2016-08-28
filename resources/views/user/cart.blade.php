@@ -35,7 +35,7 @@
         </table>
         </div>
         <div class="cart-functions">
-          <a class="button-small primary" href="#">checkout</a>
+          <a class="button-small primary" href="{{ route('checkout') }}">checkout</a>
         </div>
         <input type='hidden' id='token' name='_token' value='{{ Session::token() }}'
       @endif

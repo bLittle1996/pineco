@@ -56,6 +56,10 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'VerifyController@getVerificationSuccess',
       'as' => 'confirmedVerification'
     ]);
+    Route::get('/resend/{username}', [
+      'uses' => 'VerifyController@resendVerificationEmail',
+      'as' => 'resendVerificationEmail'
+    ]);
   });
   //the auth middleware we see here basically means that a user has to be logged in and authenticated in order to access it
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
@@ -83,6 +87,25 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'CartController@modifyQuantityInCart',
       'as' => 'updateQuantityInCart'
     ]);
+    Route::get('/cart/checkout', [
+      'uses' => 'CheckoutController@getCheckout',
+      'as' => 'checkout'
+    ]);
+    Route::get('/shippingInformation', [
+      'uses' => 'CheckoutController@getShippingInfo',
+      'as' => 'getShippingInfo'
+    ]);
+
+    Route::post('/cart/payment', [
+      'uses' => 'CheckoutController@proceedToPayment',
+      'as' => 'proceedToPayment'
+    ]);
+
+    Route::post('/cart/handlePayment', [
+      'uses' => 'CheckoutController@handlePayment',
+      'as' => 'handlePayment'
+    ]);
+
   });
 
   Route::group(['prefix' => 'catalog'], function() {

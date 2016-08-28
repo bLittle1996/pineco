@@ -6,7 +6,7 @@
 
 @section('body')
   @include('includes/header')
-  <div class="wrapper-narrow panel">
+  <div class="wrapper-narrow panel verify">
     @if(Session::get('success') == null)
       <script>window.location.href = "{{ route('home') }}";</script>
     @endif

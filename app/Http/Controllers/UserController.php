@@ -29,7 +29,7 @@ class UserController extends Controller {
     //so if we could login, check to see if we are verified(confirmed). If not, redirect them to a page letting them know they gotta do that if they want to login
     else if(Auth::user()->confirmed === false){
       Auth::logout();
-      return redirect()->route('verificationRequired')->with(['email' => User::where('username', '=', $request['username'])->first()['email']]);
+      return redirect()->route('verificationRequired')->with(['username' => User::where('username', '=', $request['username'])->first()['username']]);
     }
     //otherwise we just login and have a gander
     return redirect()->route('profile');
@@ -61,7 +61,7 @@ class UserController extends Controller {
 
   public function logoutUser() {
     Auth::logout();
-    return redirect()->back();
+    return redirect()->route('login');
   }
 
 }

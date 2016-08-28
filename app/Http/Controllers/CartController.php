@@ -18,10 +18,11 @@ class CartController extends Controller
     try {
       $cart = Cart::where('user_id', Auth::user()->id)->firstOrFail();
       $existingQuantity = DB::table('cart_product')->where('product_id', $product_id)->first()->quantity;
-      if($direction == '+') {
+      $inventoryQuantity = DB::table('products')->where('id', $product_id)->first()->quantity;
+      if($direction == '+' && $existingQuantity < $inventoryQuantity) {
         $cart->products()->updateExistingPivot($product_id, ['quantity' => $existingQuantity + 1]);
       } else {
-        if($existingQuantity > 1) {
+        if($existingQuantity > 1 && $direction == '-') {
           $cart->products()->updateExistingPivot($product_id, ['quantity' => $existingQuantity - 1]);
         }
       }
