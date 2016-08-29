@@ -14,8 +14,7 @@ $(document).ready(() => {
   }
 
   function populateOrdersTable(data) {
-    if(data) {
-      console.log(data)
+    if(data.length != 0) {
       let ordersTable = $('#orders-table')
       ordersTable.text('')//remove ;you dont have orders; message
       let rowsToAdd = '';
