@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App\Cart;
-use App\userShippingInfo;
-
+use App\UserShippingInfo;
+use App\Order;
+use App\OrderDetail;
 class CheckoutController extends Controller
 {
   public function getShippingInfo() {
@@ -30,18 +31,17 @@ class CheckoutController extends Controller
   }
 
   public function proceedToPayment(Request $request) {
-    $this->validate($request, [
-      'name' => 'required',
-      'address' => 'required',
-      'city' => 'required',
-      'state' => 'required',
-      'country' => 'required',
-      'postal_code' => 'required',
-      'phone' => 'required'
-    ]);
-
     if($request['save_shipping_info'] != null) {
-      try{
+      try {
+        $this->validate($request, [
+          'name' => 'required',
+          'address' => 'required',
+          'city' => 'required',
+          'state' => 'required',
+          'country' => 'required',
+          'postal_code' => 'required',
+          'phone' => 'required'
+        ]);
         $newShippingInfo = new userShippingInfo();
         $newShippingInfo->name = $request['name'];
         $newShippingInfo->address = $request['address'];
@@ -60,10 +60,28 @@ class CheckoutController extends Controller
   }
 
   public function handlePayment(Request $request) {
-    return Auth::user()->charge($request['amountInCents'], [
+    $order = new Order();
+    $order->total_paid = $request['amountInCents'] / 100;
+    $orderDetails = [];
+    foreach(Auth::user()->cart()->first()->products as $product) {
+      $orderDetail = new OrderDetail();
+      $orderDetail->product_id = $product->id;
+      $orderDetail->price_per_unit = $product->price;
+      $orderDetail->quantity = $product->pivot->quantity;
+      $orderDetails[] = $orderDetail;
+    }
+
+    Auth::user()->orders()->save($order);
+    $order->orderDetails()->saveMany($orderDetails);
+
+    Auth::user()->cart()->first()->products()->detach();
+
+    Auth::user()->charge($request['amountInCents'], [
       "currency" => "cad",
       "source" => $request['stripeToken'],
       "description" => "your pine.co order"
     ]);
+
+    return redirect()->route('profile');
   }
 }

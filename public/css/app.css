@@ -164,6 +164,8 @@
     font-weight: 200;
     color: #6b6149;
     margin-left: 2em; }
+    .verify p span {
+      color: #588957; }
   .verify a {
     color: #588957;
     font-weight: 200;

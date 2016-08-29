@@ -12,7 +12,7 @@
     @endif
     <h1>uh-oh</h1>
     <p>something went wrong with your activation</p>
-    <a href="#">click here to send it again</a>
+    <a href="{{ route('login') }}">click here to go back to the login screen</a>
   </div>
   @include('includes/footer')
 @endsection

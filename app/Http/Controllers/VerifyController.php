@@ -41,13 +41,16 @@ class VerifyController extends Controller
     }
   }
 
-  public function verifyAccount($confirmation_token) {
+  public function verifyAccount($confirmation_token, $username = null) {
     try {
       $user = User::where('confirmation_token', '=', $confirmation_token)->first();
+      if(!$user) {
+        throw new \Exception('OOPS');
+      }
       $user->confirmed = true;
       $user->save();
     }
-    catch(Exception $ex) {
+    catch(\Exception $ex) {
       return redirect()->route('failedVerification')->with(['success' => 'failed']);
     }
     return redirect()->route('confirmedVerification')->with(['success' => 'success']);

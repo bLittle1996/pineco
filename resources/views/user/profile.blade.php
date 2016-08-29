@@ -7,7 +7,8 @@
 @section('body')
 
   @include('includes/header')
-
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <script src="{{ URL::to('javascript/profile.js') }}"></script>
   <section class="panel wrapper" id="profile">
     <div class="panel-header">
       <h1>profile</h1>
@@ -27,7 +28,8 @@
 
       <div class="order-history outline">
         <h3>order history</h3>
-        you haven't ordered anything, get on that please
+        <div id="orders-table">you haven't ordered anything, get on that please</div><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script src="{{ URL::to('javascript/cart.js') }}"></script>
       </div>
     </div>
   </section>

@@ -67,6 +67,11 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'UserController@getProfile',
       'as' => 'profile'
     ]);
+
+    Route::get('/getOrders', [
+      'uses' => 'UserController@getOrders',
+      'as' => 'getOrders'
+    ]);
     Route::get('/logout', [
       'uses' => 'UserController@logoutUser',
       'as' => 'logout'

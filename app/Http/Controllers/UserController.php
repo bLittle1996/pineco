@@ -64,4 +64,10 @@ class UserController extends Controller {
     return redirect()->route('login');
   }
 
+  /***** PROFILE FUNCTIONS *****/
+
+  public function getOrders() {
+    return response()->json(Auth::user()->orders()->with('orderDetails')->orderBy('created_at', 'desc')->get());
+  }
+
 }

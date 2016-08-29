@@ -24,4 +24,8 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
   public function userShippingInfo() {
     return $this->hasMany('App\UserShippingInfo');
   }
+
+  public function orders() {
+    return $this->hasMany('App\Order');
+  }
 }
