@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
         $table->string('password');//the users actual password
         $table->string('confirmation_token')->nullable();
         $table->boolean('confirmed')->default(false);
+        $table->string('password_token')->nullable();
         /* The following is required for Laravel Cashier w/ Stripe to work */
         $table->string('stripe_id')->nullable();
         $table->string('card_brand')->nullable();

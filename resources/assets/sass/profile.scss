@@ -12,6 +12,9 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
   max-width: 800px;
   min-width: 620px;
   margin: 50px auto 50px auto;
+  a {
+    color: $primary-green;
+  }
   h1, h3, h5{
     color: $primary-brown;
     margin: 0;
@@ -69,7 +72,15 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
         color: $primary-brown;
         margin: 0;
       }
-
+      table {
+        width: 100%;
+        td {
+          vertical-align: text-top;
+        }
+        tr {
+          text-align: right;
+        }
+      }
     }
   }
 }
@@ -79,3 +90,47 @@ $panel-shadow: 0px 0px 30px 0px rgba(61, 48, 25, 0.6);
   border-radius: 10px;
   padding: 10px;
 }
+
+
+
+#update-user-form {
+  h1 {
+    color: $primary-brown;
+    margin-left: 1em;
+    font-weight: 200;
+  }
+  form {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  input {
+    display: block;
+    padding: 15px 12px;
+    width: 60%;
+    min-width: 100px;
+    border-radius: 12px;
+    border: solid 1px rgba(61, 48, 25, 0.55);
+    box-shadow: $button-shadow;
+    margin: 0 auto 30px auto;
+    outline: none;
+    color: $primary-brown;
+  }
+  .button{
+    font-family: 'Noto Sans Japanese';
+    font-weight: 500;
+    font-size: 15px;
+    padding-bottom: 8px;
+    outline: none;
+  }
+  p {
+    text-align: center;
+    color: $secondary-brown;
+  }
+  .error-msg {
+    color: red;
+  }
+
+  .success-msg {
+    color: $primary-green;
+  }
+} /* UPDATE-USER-FORM ends */

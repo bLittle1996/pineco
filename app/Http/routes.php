@@ -67,7 +67,26 @@ Route::group(['prefix' => '/'], function() {
       'uses' => 'UserController@getProfile',
       'as' => 'profile'
     ]);
-
+    Route::get('/updateUsername', [
+      'uses' => 'UserController@getChangeUsername',
+      'as' => 'getChangeUsername'
+    ]);
+    Route::post('/updateUsername', [
+      'uses' => 'UserController@changeUsername',
+      'as' => 'updateUsername'
+    ]);
+    Route::get('/updatePassword', [
+      'uses' => 'UserController@getChangePassword',
+      'as' => 'getChangePassword'
+    ]);
+    Route::post('/updatePassword', [
+      'uses' => 'UserController@changePassword',
+      'as' => 'updatePassword'
+    ]);
+    Route::post('/generatePasswordToken', [
+      'uses' => 'UserController@generatePasswordToken',
+      'as' => 'generatePasswordToken'
+    ]);
     Route::get('/getOrders', [
       'uses' => 'UserController@getOrders',
       'as' => 'getOrders'

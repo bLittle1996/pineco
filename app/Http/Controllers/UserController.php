@@ -40,7 +40,7 @@ class UserController extends Controller {
       'email' => 'required|unique:users|email',
       'password' => 'required|min:8|same:password_confirm'
     ]);
-                                      //tells this closure to take the $request variable from the function parameter
+    //tells this closure to take the $request variable from the function parameter
     DB::transaction(function() use ($request) {
       $user = new User();
       $user->username = strtolower($request['username']);
@@ -65,9 +65,73 @@ class UserController extends Controller {
   }
 
   /***** PROFILE FUNCTIONS *****/
+  public function getChangeUsername() {
+    return view('user/changeUsername');
+  }
+
+  public function getChangePassword() {
+    return view('user/changePassword');
+  }
 
   public function getOrders() {
     return response()->json(Auth::user()->orders()->with('orderDetails')->orderBy('created_at', 'desc')->get());
+  }
+
+  public function changeUsername(Request $request) {
+    $this->validate($request, [
+      'newUsername' => 'required|unique:users,username'
+    ]);
+    DB::beginTransaction();
+    try {
+      $user = Auth::user();
+      $user->username = $request['newUsername'];
+      $user->save();
+      DB::commit();
+      return redirect()->back()->with(['success' => 'username successfully updated']);
+    } catch(\Exception $ex) {
+      DB::rollback();
+      return redirect()->back()->with(['error' => 'unable to change username, try again later']);
+    }
+  }
+
+  public function generatePasswordToken() {
+    DB::beginTransaction();
+    try {
+      $user = Auth::user();
+      $user->password_token = str_random(7);
+      $user->save();
+      Mail::send('emails/passwordChange', ['user' => $user], function ($m) use ($user) {
+        $m->to($user->email, $user->username)->subject('pine.co password change confirmation');
+        $m->from('noreply@pine.co', 'Pine.co Team');
+      });
+      DB::commit();
+      return redirect()->back()->with(['success' => 'please check your email to receive your code']);
+    } catch(\Exception $ex) {
+      DB::rollback();
+      return redirect()->back()->with(['error' => 'unable to send email, try again later']);
+    }
+  }
+
+  public function changePassword(Request $request) {
+    $this->validate($request, [
+      'newPassword' => 'min:8|required|same:passwordConfirm',
+      'token' => 'required'
+    ]);
+    DB::beginTransaction();
+    try {
+      $user = Auth::user();
+      if($user->password_token == $request['token']) {
+        $user->password = bcrypt($request['newPassword']);
+        $user->password_token = null;
+        $user->save();
+        DB::commit();
+        return redirect()->back()->with(['success' => 'password succesfully updated']);
+      }
+      return redirect()->back()->with(['error' => 'token invalid']);
+    } catch(\Exception $ex) {
+      DB::rollback();
+      return redirect()->back()->with(['error' => 'unable to update password, servers caught fire']);
+    }
   }
 
 }

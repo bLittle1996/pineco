@@ -278,6 +278,8 @@ button.button, button.button-small, button.button-large {
   max-width: 800px;
   min-width: 620px;
   margin: 50px auto 50px auto; }
+  #profile a {
+    color: #588957; }
   #profile h1, #profile h3, #profile h5 {
     color: #4b3d1a;
     margin: 0; }
@@ -324,11 +326,57 @@ button.button, button.button-small, button.button-large {
         display: block;
         color: #4b3d1a;
         margin: 0; }
+      #profile .account-content .order-history table {
+        width: 100%; }
+        #profile .account-content .order-history table td {
+          vertical-align: text-top; }
+        #profile .account-content .order-history table tr {
+          text-align: right; }
 
 .outline {
   border: solid 1px #91876e;
   border-radius: 10px;
   padding: 10px; }
+
+#update-user-form h1 {
+  color: #4b3d1a;
+  margin-left: 1em;
+  font-weight: 200; }
+
+#update-user-form form {
+  text-align: center;
+  margin-bottom: 1em; }
+
+#update-user-form input {
+  display: block;
+  padding: 15px 12px;
+  width: 60%;
+  min-width: 100px;
+  border-radius: 12px;
+  border: solid 1px rgba(61, 48, 25, 0.55);
+  box-shadow: 0px 0px 25px 0px rgba(61, 48, 25, 0.55);
+  margin: 0 auto 30px auto;
+  outline: none;
+  color: #4b3d1a; }
+
+#update-user-form .button {
+  font-family: 'Noto Sans Japanese';
+  font-weight: 500;
+  font-size: 15px;
+  padding-bottom: 8px;
+  outline: none; }
+
+#update-user-form p {
+  text-align: center;
+  color: #6b6149; }
+
+#update-user-form .error-msg {
+  color: red; }
+
+#update-user-form .success-msg {
+  color: #588957; }
+
+/* UPDATE-USER-FORM ends */
 
 /* that colour format consistency */
 #catalog {

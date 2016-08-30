@@ -19,9 +19,8 @@
       <div class="account-settings outline">
         <h3>account settings</h3>
         <ul>
-          <li>change username</li>
-          <li>change email</li>
-          <li>change password</li>
+          <li><a href="{{ route('getChangeUsername') }}">change username</a></li>
+          <li><a href='{{ route('getChangePassword') }}'>change password</a></li>
           <li>change shipping info</li>
         </ul>
       </div>

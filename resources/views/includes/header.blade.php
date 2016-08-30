@@ -10,6 +10,7 @@
           <li><a href="{{ route('registration') }}" class="button-small secondary">register</a></li>
         @else
           <li><a href="{{ route('cart') }}">cart</a></li>
+          <li><a href="{{ route('profile') }}">profile</a></li>
           <li><a href="{{ route('logout') }}" class="button-small secondary">logout</a></li>
         @endif
       </ul>
