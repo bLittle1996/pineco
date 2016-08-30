@@ -17,6 +17,8 @@ pine.co is a fun little project that I created in order to become more familiar 
 * SASS w/ Laravel Elixir to compile and autoprefix
 * jQuery
 
+* Note this was only tested using Google Chrome v52
+
 ## Created By
 
 * Ben Littleton
